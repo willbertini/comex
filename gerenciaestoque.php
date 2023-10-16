@@ -82,11 +82,3 @@ function removeEstoque (array &$produtos, $codigo, $quantidade)
     verificaEstoque($produtos,$codigo);
 }
 removeEstoque($listaProdutos,0,10);
-
-
-
-
-$maior = uasort($listaProdutos, function ($a, $b) { 
-    return $b['preco'] <=> $a['preco'];
-    });
-echo $b;
