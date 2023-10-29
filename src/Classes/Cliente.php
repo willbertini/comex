@@ -5,7 +5,7 @@ namespace Willian\Comex\Classes;
 class Cliente
 {
    
-
+    private array $pedidos = [];
     public function __construct(
         private string $nome,
         private string $email,
@@ -40,6 +40,11 @@ class Cliente
         return $this->endereco;
     }
 
+    public function getPedidos()
+    {
+        return $this->pedidos;
+    }
+
     public function setEmail(string $valor)
     {
         $this->email = $valor;
@@ -53,6 +58,11 @@ class Cliente
     public function setEndereco(Endereco $valor)
     {
         $this->endereco = $valor;
+    }
+
+    public function setAdicionaPedido(Pedido $valor)
+    {
+        array_push($this->pedidos, $valor);
     }
 
 }
