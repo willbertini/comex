@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use Willian\Comex\Classes\Carrinho;
 use Willian\Comex\Classes\Cliente;
 use Willian\Comex\Classes\Endereco;
 use Willian\Comex\Classes\Produto;
@@ -59,7 +60,7 @@ $produto1->compra(5);
 $produto1->repoe(10);
 
 echo "Quantidade em estoque do produto " . $produto1->getNome() . " é de " . $produto1->getQtdEstoque() . PHP_EOL;
-
+echo PHP_EOL;
 
 $pedido = new Pedido(
     1,
@@ -68,3 +69,16 @@ $pedido = new Pedido(
 );
 
 $pedido->adicionaProduto($produto1);
+
+$carrinho = new Carrinho(
+    [
+        $produto1,
+        $produto2,
+        $produto3,
+        $produto1
+    ]
+);
+
+$carrinho->removerProduto('Teclado');
+
+
