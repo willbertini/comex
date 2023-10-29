@@ -44,4 +44,9 @@ class Carrinho
         return $valor >=100 ? $valor * 0.9 : $valor;
     }
 
+    public function calculaFrete()
+    {
+        return $this->getValorTotal() > 100 ? 0 : 9.99;
+    }
+
 }
