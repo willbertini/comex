@@ -5,6 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use Willian\Comex\Classes\Cliente;
 use Willian\Comex\Classes\Endereco;
 use Willian\Comex\Classes\Produto;
+use Willian\Comex\Classes\Pedido;
 
 $cliente = new Cliente(
     'Maria da Silva',
@@ -58,3 +59,12 @@ $produto1->compra(5);
 $produto1->repoe(10);
 
 echo "Quantidade em estoque do produto " . $produto1->getNome() . " é de " . $produto1->getQtdEstoque() . PHP_EOL;
+
+
+$pedido = new Pedido(
+    1,
+    $cliente,
+    $produtos
+);
+
+$pedido->adicionaProduto($produto1);
