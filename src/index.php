@@ -5,6 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use Willian\Comex\Classes\Carrinho;
 use Willian\Comex\Classes\Cliente;
 use Willian\Comex\Classes\Endereco;
+use Willian\Comex\Classes\Pagamento\CartaoDeCredito;
 use Willian\Comex\Classes\Produto;
 use Willian\Comex\Classes\Pedido;
 
@@ -46,9 +47,6 @@ $produto3 = new Produto(
     100
 );
 
-//testando exceções da classe produto:
-$produto1->repoe(-1);
-return;
 
 $produtos = [
     $produto1,
@@ -69,10 +67,14 @@ echo PHP_EOL;
 $pedido = new Pedido(
     1,
     $cliente,
-    $produtos
+    $produtos,
+    new CartaoDeCredito()
 );
 
 $pedido->adicionaProduto($produto1);
+
+$pedido->pagar();
+return;
 
 $carrinho = new Carrinho(
     [
