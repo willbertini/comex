@@ -2,6 +2,8 @@
 
 namespace Willian\Comex\Classes;
 
+use Exception;
+
 class Produto
 {
     public function __construct(
@@ -38,11 +40,22 @@ class Produto
 
     public function compra(int $quantidade = 1)
     {
+        if ($quantidade < 0) {
+            throw new \InvalidArgumentException("A quantidade de compra não pode ser negativa!");
+        }
+
+        if ($quantidade > $this->qtdEstoque) {
+            throw new Exception("A quantidade de compra não pode ser maior que a quantidade em estoque.");
+        }
+
         $this->qtdEstoque -= $quantidade;
     }
 
     public function repoe(int $quantidade = 1 )
     {
+        if ($quantidade < 0) {
+            throw new \InvalidArgumentException("A quantidade de reposição não pode ser negativa!");
+        }
         $this->qtdEstoque += $quantidade;
     }
 
