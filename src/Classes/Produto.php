@@ -3,6 +3,7 @@
 namespace Willian\Comex\Classes;
 
 use Exception;
+use InvalidArgumentException;
 
 class Produto
 {
@@ -40,12 +41,20 @@ class Produto
 
     public function compra(int $quantidade = 1)
     {
-        if ($quantidade < 0) {
-            throw new \InvalidArgumentException("A quantidade de compra não pode ser negativa!");
-        }
+        try {
+            if ($quantidade < 0) {
+                throw new InvalidArgumentException("A quantidade de compra não pode ser negativa!");
+            }
 
-        if ($quantidade > $this->qtdEstoque) {
-            throw new Exception("A quantidade de compra não pode ser maior que a quantidade em estoque.");
+            if ($quantidade > $this->qtdEstoque) {
+                throw new Exception("A quantidade de compra não pode ser maior que a quantidade em estoque.");
+            }
+        } catch (InvalidArgumentException $erro) {
+            echo "Argumento inválido: " . $erro->getMessage() . PHP_EOL;
+            return;
+        } catch (Exception $erro) {
+            echo "Regra de negócio violada: " . $erro->getMessage() . PHP_EOL;
+            return;
         }
 
         $this->qtdEstoque -= $quantidade;
@@ -53,8 +62,13 @@ class Produto
 
     public function repoe(int $quantidade = 1 )
     {
-        if ($quantidade < 0) {
-            throw new \InvalidArgumentException("A quantidade de reposição não pode ser negativa!");
+        try{
+            if ($quantidade < 0) {
+                throw new InvalidArgumentException("A quantidade de reposição não pode ser negativa!");
+            }
+        } catch (InvalidArgumentException $erro) {
+            echo "Argumento inválido: " . $erro->getMessage() . PHP_EOL;
+            return;
         }
         $this->qtdEstoque += $quantidade;
     }

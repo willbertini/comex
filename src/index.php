@@ -46,6 +46,10 @@ $produto3 = new Produto(
     100
 );
 
+//testando exceções da classe produto:
+$produto1->repoe(-1);
+return;
+
 $produtos = [
     $produto1,
     $produto2,
