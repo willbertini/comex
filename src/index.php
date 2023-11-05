@@ -35,6 +35,10 @@ $produto1 = new Produto(
     100
 );
 
+//testando classe exception CompraMaiorQueEstoque
+$produto1->compra(50000);
+return;
+
 $produto2 = new Produto(
     'Mouse', 
     9.85,

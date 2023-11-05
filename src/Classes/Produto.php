@@ -4,6 +4,7 @@ namespace Willian\Comex\Classes;
 
 use Exception;
 use InvalidArgumentException;
+use Willian\Comex\Exceptions\CompraMaiorQueEstoque;
 
 class Produto
 {
@@ -47,7 +48,7 @@ class Produto
             }
 
             if ($quantidade > $this->qtdEstoque) {
-                throw new Exception("A quantidade de compra não pode ser maior que a quantidade em estoque.");
+                throw new CompraMaiorQueEstoque($this->qtdEstoque, $quantidade);
             }
         } catch (InvalidArgumentException $erro) {
             echo "Argumento inválido: " . $erro->getMessage() . PHP_EOL;

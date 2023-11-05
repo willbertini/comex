@@ -1,6 +1,8 @@
 <?php
 
 namespace Willian\Comex\Classes\Pagamento;
+
+use Willian\Comex\Exceptions\FalhaComunicacaoServidorException;
 use Willian\Comex\Interfaces\MeioDePagamento;
 
 class CartaoDeCredito implements MeioDePagamento
@@ -14,7 +16,7 @@ class CartaoDeCredito implements MeioDePagamento
 
         try{
             if ($situacao === 0) {
-                throw new \Exception("Erro ao conectar com o servidor de pagamentos.");
+                throw new FalhaComunicacaoServidorException("Erro ao conectar com o servidor de pagamentos.");
             }
         } catch (\Exception $erro){
             echo "Erro ao processar pagamento: " . $erro->getMessage() . PHP_EOL;
