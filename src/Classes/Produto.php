@@ -30,7 +30,7 @@ class Produto
         return $this->qtdEstoque;
     }
 
-    public function getValorTotalEstoqye()
+    public function getValorTotalEstoque()
     {
         return $this->preco * $this->qtdEstoque;
     }
