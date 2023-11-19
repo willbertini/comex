@@ -3,7 +3,7 @@
 $caminho = __DIR__ . "/../../db.sqlite";
 $pdo = new PDO('sqlite:' . '');
 
-$sql = "CREATE TABLE clientes (
+$sql = "CREATE TABLE IF NOT EXISTS clientes (
     id INTEGER PRIMARY KEY,
     nome TEXT,
     email TEXT,
@@ -12,7 +12,7 @@ $sql = "CREATE TABLE clientes (
 
 $pdo->exec($sql);
 
-$sql = "CREATE TABLE enderecos (
+$sql = "CREATE TABLE IF NOT EXISTS enderecos (
     id INTEGER PRIMARY KEY,
     cliente_id INTEGER,
     cep TEXT,
@@ -27,7 +27,7 @@ $sql = "CREATE TABLE enderecos (
 
 $pdo->exec($sql);
 
-$sql = "CREATE TABLE produtos (
+$sql = "CREATE TABLE IF NOT EXISTS produtos (
     id INTEGER PRIMARY KEY,
     nome TEXT,
     preco FLOAT,
@@ -36,7 +36,7 @@ $sql = "CREATE TABLE produtos (
 
 $pdo->exec($sql);
 
-$sql = "CREATE TABLE pedidos (
+$sql = "CREATE TABLE IF NOT EXISTS pedidos (
     id INTEGER PRIMARY KEY,
 
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
@@ -44,7 +44,7 @@ $sql = "CREATE TABLE pedidos (
 
 $pdo->exec($sql);
 
-$sql = "CREATE TABLE itens_do_pedido (
+$sql = "CREATE TABLE IF NOT EXISTS itens_do_pedido (
     id INTEGER PRIMARY KEY,
     pedido_id INTEGER,
     produto_id INTEGER,
@@ -54,3 +54,5 @@ $sql = "CREATE TABLE itens_do_pedido (
     );";
 
 $pdo->exec($sql);
+
+return $pdo;

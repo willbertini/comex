@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
+$pdo = include __DIR__ . "/Config/pdo.php";
 
 use Willian\Comex\Classes\Carrinho;
 use Willian\Comex\Classes\Cliente;
@@ -8,7 +9,14 @@ use Willian\Comex\Classes\Endereco;
 use Willian\Comex\Classes\Pagamento\CartaoDeCredito;
 use Willian\Comex\Classes\Produto;
 use Willian\Comex\Classes\Pedido;
+use Willian\Comex\DAO\ClienteDAO;
 
+$clienteDAO = new ClienteDAO($pdo);
+
+
+
+
+return;
 $cliente = new Cliente(
     'Maria da Silva',
     'mariasilva@gmail.com',
