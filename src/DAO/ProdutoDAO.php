@@ -10,7 +10,7 @@ class ProdutoDAO
 
     }
 
-    public function criar(string $nome, float $preco, int $qtd_estoque) {
+    public function salvar(string $nome, float $preco, int $qtd_estoque) {
 
         $sql = "insert into produto (nome, preco, qtd_estoque) values (?, ?,?);";
 
