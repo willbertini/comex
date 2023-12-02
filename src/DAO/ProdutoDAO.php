@@ -1,6 +1,7 @@
 <?php
 
 namespace Willian\Comex\DAO;
+use Willian\Comex\Classes\Produto;
 
 class ProdutoDAO
 {
@@ -12,7 +13,7 @@ class ProdutoDAO
 
     public function salvar(string $nome, float $preco, int $qtd_estoque) {
 
-        $sql = "insert into produto (nome, preco, qtd_estoque) values (?, ?,?);";
+        $sql = "insert into produtos (nome, preco, qtd_estoque) values (?, ?,?);";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -54,8 +55,12 @@ class ProdutoDAO
         $sql = "select * from produto where nome = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$nome]);
-        var_dump($stmt->fetchAll());
-        return;
+        $dados = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return new Produto(
+            $dados['nome'],
+            $dados['preco'],
+            $dados['qtd_estoque']
+        );
 
     }
 
