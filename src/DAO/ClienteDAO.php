@@ -10,7 +10,7 @@ class ClienteDAO
     ){
 
     }
-    public function salvar(string $nome, string $email, string $celular)
+    public function salvar(string $nome, string $email, string $celular, int $cep, string $estado, string $cidade, string $bairro, string $rua, string $numero)
     {
         $sql = "INSERT INTO clientes (nome, email, celular) VALUES (?,?,?)";
 
